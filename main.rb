@@ -50,7 +50,7 @@ class HashMap
   end
 
   def clear
-    @bucket = Array.new(16, LinkedList.new)
+    @bucket = Array.new(16)
   end
 
   # def keys
@@ -75,4 +75,6 @@ pet_names.each do |name|
   map.set(map.hash(name), name)
 end
 
-puts map.length
+puts map.bucket
+map.clear
+puts map.bucket
