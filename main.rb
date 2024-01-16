@@ -40,13 +40,8 @@ class HashMap
   end
 
   def remove(key)
-    let value
-    if @bucket.length < key
-      value = @bucket[key.head]
-      @bucket[key].pop
-    else
-      value = nil
-    end
+    value = bucket[key]
+    bucket[key] = nil
     value
   end
 
@@ -79,5 +74,3 @@ pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'J
 pet_names.each do |name| 
   map.set(map.hash(name), name)
 end
-
-puts map.key?(0)
