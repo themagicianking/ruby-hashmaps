@@ -53,11 +53,12 @@ class HashMap
     @bucket = Array.new(16)
   end
 
-  # def keys
-    # x = @bucket.length
-    # array_of_keys = []
-    # for loop through length of bucket ?
-  # end
+  def keys
+    array_of_keys = []
+    array_of_values = @bucket.select { |bucket| !bucket.nil? }
+    array_of_values.each { |value| array_of_keys.push(@bucket.index(value))}
+    array_of_keys
+  end
 
   # def values
   # end
@@ -75,6 +76,3 @@ pet_names.each do |name|
   map.set(map.hash(name), name)
 end
 
-puts map.bucket
-map.clear
-puts map.bucket
