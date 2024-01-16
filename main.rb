@@ -20,8 +20,7 @@ class HashMap
   end
 
   def set(key, value)
-    puts @bucket.count
-    if (@bucket.count(nil)/@capacity) >= (1 - LOAD_FACTOR)
+    if ((Float(@bucket.count - @bucket.count(nil)))/@capacity) >= (LOAD_FACTOR)
       @bucket = @bucket + Array.new(@capacity)
       @capacity = @bucket.length
     end
@@ -31,8 +30,10 @@ class HashMap
   end
 
   def get(key)
-    if @bucket.length < key
-      @bucket[key].at(0)
+    if @bucket.length < key && !key.nil?
+      @bucket[key].value
+    else
+      nil
     end
   end
 
@@ -83,6 +84,6 @@ pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'J
 
 pet_names.each do |name| 
   map.set(map.hash(name), name)
-  # puts map.bucket[map.hash(name)]
-  puts map.bucket
 end
+
+map.get(0)
