@@ -20,6 +20,11 @@ class HashMap
   end
 
   def set(key, value)
+    puts @bucket.count
+    if (@bucket.count(nil)/@capacity) >= (1 - LOAD_FACTOR)
+      @bucket = @bucket + Array.new(@capacity)
+      @capacity = @bucket.length
+    end
     new_list = LinkedList.new
     new_list.append(value)
     @bucket[key] = value
@@ -74,11 +79,10 @@ end
 
 map = HashMap.new
 
-pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Firefly', 'Compass', 'Mark', 'Khoshekh', 'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
+pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Caramel', 'Strawberry', 'Einstein', 'Falcon', 'Skipper', 'Firefly', 'Compass', 'Mark', 'Khoshekh', 'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
 
 pet_names.each do |name| 
   map.set(map.hash(name), name)
   # puts map.bucket[map.hash(name)]
   puts map.bucket
-  puts map.bucket.length
 end
