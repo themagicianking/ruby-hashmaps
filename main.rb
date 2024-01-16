@@ -60,8 +60,12 @@ class HashMap
     array_of_keys
   end
 
-  # def values
-  # end
+  def values
+    sanitized_values = []
+    array_of_values = @bucket.select { |bucket| !bucket.nil? }
+    array_of_values.each { |node| sanitized_values.push(node.head.value) }
+    sanitized_values
+  end
 
   # def entries
   # end
@@ -76,3 +80,4 @@ pet_names.each do |name|
   map.set(map.hash(name), name)
 end
 
+puts map.values
