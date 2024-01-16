@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 require '../linked-lists/main'
 
-# raise IndexError if index.negative? || index >= @buckets.length
-
 # this class implements hashmaps
 class HashMap
   LOAD_FACTOR = 0.75
 
   def initialize
-    @bucket = Array.new(16, LinkedList.new)
+    @bucket = Array.new(16)
     @capacity = 16
   end
 
@@ -22,7 +20,9 @@ class HashMap
   end
 
   def set(key, value)
-    @bucket.insert(key, value)
+    new_list = LinkedList.new
+    new_list.append(value)
+    @bucket[key] = value
   end
 
   def get(key)
@@ -69,13 +69,16 @@ class HashMap
 
   # def entries
   # end
-  attr_accessor :bucket
+  attr_accessor :bucket, :index
 end
 
 map = HashMap.new
 
 pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Firefly', 'Compass', 'Mark', 'Khoshekh', 'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
 
-pet_names.each { |name| map.set(map.hash(name), name)}
-
-puts map.bucket
+pet_names.each do |name| 
+  map.set(map.hash(name), name)
+  # puts map.bucket[map.hash(name)]
+  puts map.bucket
+  puts map.bucket.length
+end
