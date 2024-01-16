@@ -22,7 +22,7 @@ class HashMap
   end
 
   def set(key, value)
-    @bucket[key].append(value)
+    @bucket.insert(key, value)
   end
 
   def get(key)
@@ -74,9 +74,8 @@ end
 
 map = HashMap.new
 
-pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Firefly', 'Compass', 'Mark', 'Khoshekh',
-  'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
+pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Firefly', 'Compass', 'Mark', 'Khoshekh', 'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
 
-pet_names.each { |name| map.set(map.hash(name), name) }
+pet_names.each { |name| map.set(map.hash(name), name)}
 
-pp map.bucket
+puts map.bucket
