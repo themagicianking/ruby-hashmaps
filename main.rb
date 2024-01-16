@@ -36,11 +36,7 @@ class HashMap
   end
 
   def key?(key)
-    if @bucket.length < key
-      true
-    else
-      false
-    end
+    bucket[key] ? true : false
   end
 
   def remove(key)
@@ -84,4 +80,4 @@ pet_names.each do |name|
   map.set(map.hash(name), name)
 end
 
-puts map.get(90)
+puts map.key?(0)
