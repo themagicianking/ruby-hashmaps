@@ -26,14 +26,12 @@ class HashMap
     end
     new_list = LinkedList.new
     new_list.append(value)
-    @bucket[key] = value
+    @bucket[key] = new_list
   end
 
   def get(key)
-    if @bucket.length < key && !key.nil?
-      @bucket[key].value
-    else
-      nil
+    if !@bucket[key].nil?
+      @bucket[key].head.value
     end
   end
 
@@ -86,4 +84,4 @@ pet_names.each do |name|
   map.set(map.hash(name), name)
 end
 
-map.get(0)
+puts map.get(90)
