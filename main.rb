@@ -67,17 +67,10 @@ class HashMap
     sanitized_values
   end
 
-  # def entries
-  # end
+  def entries
+    array_of_entries = []
+    self.values.each_with_index { |value, index| array_of_entries.push([self.keys[index], value])}
+    array_of_entries
+  end
   attr_accessor :bucket, :index
 end
-
-map = HashMap.new
-
-pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'Juno', 'Blackberry', 'Caramel', 'Strawberry', 'Einstein', 'Falcon', 'Skipper', 'Firefly', 'Compass', 'Mark', 'Khoshekh', 'Dromio', 'Lady Macbetta', 'Cerberus', 'Arcadia']
-
-pet_names.each do |name| 
-  map.set(map.hash(name), name)
-end
-
-puts map.values
