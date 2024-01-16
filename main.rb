@@ -46,7 +46,7 @@ class HashMap
   end
 
   def length
-    @bucket.length
+    @bucket.length - @bucket.count(nil)
   end
 
   def clear
@@ -74,3 +74,5 @@ pet_names = ['Speedsqueak', 'Austin', 'Luke', 'Misty', 'Thunder', 'Clarence', 'J
 pet_names.each do |name| 
   map.set(map.hash(name), name)
 end
+
+puts map.length
